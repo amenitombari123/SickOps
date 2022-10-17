@@ -1,51 +1,92 @@
-/*package com.esprit.examen.services;
+package com.esprit.examen.services;
 
-import static org.junit.Assert.*;
-import java.util.List;
+import com.esprit.examen.repositories.StockRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.esprit.examen.entities.Stock;
+
+import lombok.extern.slf4j.Slf4j;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+//import org.junit.jupiter.api.Test;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StockServiceImplTest {
-	@Autowired
-	IStockService stockService;
-	
-	@Test
-	public void testAddStock() {
-	//	List<Stock> stocks = stockService.retrieveAllStocks();
-	//	int expected=stocks.size();
-		Stock s = new Stock("stock test",10,100);
-		Stock savedStock= stockService.addStock(s);
-		
-	//	assertEquals(expected+1, stockService.retrieveAllStocks().size());
-		assertNotNull(savedStock.getLibelleStock());
-		stockService.deleteStock(savedStock.getIdStock());
-		
-	} 
-	
-	@Test
-	public void testAddStockOptimized() {
+@Slf4j
 
-		Stock s = new Stock("stock test",10,100);
-		Stock savedStock= stockService.addStock(s);
-		assertNotNull(savedStock.getIdStock());
-		assertSame(10, savedStock.getQte());
-		assertTrue(savedStock.getQteMin()>0);
-		stockService.deleteStock(savedStock.getIdStock());
-		
-	} 
+public class StockServiceImplTest {
+    @Autowired
+    IStockService stockService;
+    private StockRepository stockRepository;
+
+
+    @Test
+    public void TestRetrieveStocks() {
+        assertNotNull(stockService.retrieveAllStocks());
+        assertNotNull(stockService,"c'est bon");
+    }
+}
+/*public class ClientServiceImplTest {
+	@Autowired
+	IClientService clientService;
+
 	
 	@Test
-	public void testDeleteStock() {
-		Stock s = new Stock("stock test",30,60);
-		Stock savedStock= stockService.addStock(s);
-		stockService.deleteStock(savedStock.getIdStock());
-		assertNull(stockService.retrieveStock(savedStock.getIdStock()));
+	public void testAddClient() throws ParseException {
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateNaissance = dateFormat.parse("30/09/2000");
+		Client c = new Client("Salhi", "Ahmed", dateNaissance, "ahmed.salhi@esprit.tn", "pwd", Profession.Cadre,
+				CategorieClient.Ordinaire);
+		Client client = clientService.addClient(c);
+		System.out.print("client "+client);
+		assertNotNull(client.getIdClient());
+		assertNotNull(client.getCategorieClient());
+		assertTrue(client.getNom().length() > 0);
+		clientService.deleteClient(client.getIdClient());
+
+	}
+	@Test
+	public void testDeleteClient() throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateNaissance = dateFormat.parse("30/09/2000");
+		Client c = new Client("Salhi", "Ahmed", dateNaissance, "ahmed.salhi@esprit.tn", "pwd", Profession.Cadre,
+				CategorieClient.Ordinaire);
+		Client client = clientService.addClient(c);
+		clientService.deleteClient(client.getIdClient());
+		assertNull(clientService.retrieveClient(client.getIdClient()));
+	}
+
+	@Test
+	public void testRetrieveAllClients() throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateNaissance = dateFormat.parse("30/09/2000");
+		List<Client> clients = clientService.retrieveAllClients();
+		int expected = clients.size();
+		Client c = new Client("Salhi", "Ahmed", dateNaissance, "ahmed.salhi@esprit.tn", "pwd", Profession.Cadre,
+				CategorieClient.Ordinaire);
+		Client client = clientService.addClient(c);
+		assertEquals(expected + 1, clientService.retrieveAllClients().size());
+		clientService.deleteClient(client.getIdClient());
+
+	}
+	@Test
+	public void testGetClientsByDateNaissance() throws ParseException
+	{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date startDate = dateFormat.parse("28/09/2000");
+		Date endDate = dateFormat.parse("30/09/2005");
+		List<Client> clients = clientService.getClientsByDateNaissance(startDate, endDate);
+		log.info(" count" + clients.size());
+		for (Client client : clients) {
+			log.info(" client : " + client.getNom()+ " né le "+client.getDateNaissance());
+
+		}
 	}
 
 }
