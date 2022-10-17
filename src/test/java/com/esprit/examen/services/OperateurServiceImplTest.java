@@ -2,6 +2,7 @@ package com.esprit.examen.services;
 
 import static org.junit.Assert.*;
 import com.esprit.examen.entities.Facture;
+import com.esprit.examen.repositories.StockRepository;
 import org.junit.Test;
 import com.esprit.examen.entities.Operateur;
 import org.junit.runner.RunWith;
@@ -33,14 +34,14 @@ import lombok.extern.slf4j.Slf4j;
 
 public class OperateurServiceImplTest {
     @Autowired
-    IOperateurService operateurService;
-    private OperateurRepository operateurRepository;
+    IStockService stockService;
+    private StockRepository stockRepository;
 
 
     @Test
-    public void TestRetrieveOperateurs() {
-        assertNotNull(operateurService.retrieveAllOperateurs());
-        assertNotNull(operateurService,"c'est bon");
+    public void TestRetrieveStocks() {
+        assertNotNull(stockService.retrieveAllStocks());
+        assertNotNull(stockService,"c'est bon");
     }
 }
 /*public class ClientServiceImplTest {
