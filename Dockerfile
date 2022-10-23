@@ -1,5 +1,4 @@
 FROM maven:3.8.2-jdk-8
-WORKDIR /spring-app
 ARG JAR_FILE=/1.0-SNAPSHOT/*.jar
 RUN mvn clean install
 RUN apt-get install wget
