@@ -7,8 +7,4 @@ RUN wget --user=admin --password=zeineb   http://192.168.0.16:8081/repositories/
 COPY ${JAR_FILE} achat.jar
 ENTRYPOINT ["java","-jar","/achat.jar"]
 EXPOSE 8082
-//FROM maven:3.8.2-jdk-8
-//WORKDIR /spring-app
-//COPY . .
-//RUN mvn clean install
-//CMD mvn spring-boot:run
+
