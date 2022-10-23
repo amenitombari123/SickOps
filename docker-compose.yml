@@ -14,7 +14,7 @@ version: "3.7"
   app:
     depends_on:
       - mysqldb
-  image: zeineb12345/achatapp_test
+  command:docker pull zeineb12345/achatapp_test
     restart: on-failure
     ports:
       - "8082:8082"
