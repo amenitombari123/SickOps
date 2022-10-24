@@ -115,8 +115,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 
-					<source>6</source>
-					<target>6</target>
+					<source>8</source>
+					<target>8</target>
 				</configuration>
 
 			</plugin>
