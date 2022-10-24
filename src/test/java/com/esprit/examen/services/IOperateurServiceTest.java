@@ -67,7 +67,7 @@ public class IOperateurServiceTest {
         verify(or, times(1)).deleteById(oo1.getIdOperateur());
         System.out.println("Delete works !");
     }
-
+}
 
 
 
