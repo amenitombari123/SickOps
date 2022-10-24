@@ -2,8 +2,9 @@ package com.esprit.examen.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -16,6 +17,9 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,12 +28,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.OneToMany;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(MockitoExtension.class)
+@RunWith(MockitoJUnitRunner.class)
 public class IOperateurServiceTest {
-    @MockBean
+    @Mock
     private OperateurRepository or;
 
     private Operateur oo1 = new Operateur(11L,"fatma","daâs","546125");
@@ -37,60 +41,32 @@ public class IOperateurServiceTest {
     @Autowired
     IOperateurService opService;
     IOperateurService os;
+    List<Operateur> listop = new ArrayList<Operateur>() {
+        {
 
-
-
-
-
-
-
-
-
-
-
-   // @Test
-  //  public void testAddop() {
-
-
-      //  Operateur o = new Operateur(123l,"op","zeineb","zeineb");
-       // Operateur savedop= opService.addOperateur(o);
-      //  assertNotNull(savedop.getNom());
-      //  assertSame(123l, savedop.getIdOperateur());
-      //  assertNotNull(savedStock.getIdStock());
-      //  assertSame(10, savedStock.getQte());
-        //assertTrue(savedop.getQteMin()>0);
-       // stockService.deleteStock(savedStock.getIdStock());
-      //  opService.deleteOperateur(savedop.getIdOperateur());
-
-    //}
+            add(new Operateur(10L, "c5", "lait", null));
+            add(new Operateur(60L, "4503","produit3",null));
+        }
+    };
+    @InjectMocks
+    IOperateurService cps;
 
 
     @Test
-    public void assertNotNullWithMessage() {
-        Operateur o = new Operateur(123l,"op","zeineb","zeineb");
-        Operateur savedop= opService.addOperateur(o);
-
-        Operateur actualop = opService.retrieveOperateur(1l);
-        assertNotNull(actualop, "op is null !");
-    }
-    @Test
-    public void assertEqualsWithMessage() {
-        Operateur o = new Operateur(123l,"op","zeineb","zeineb");
-        Operateur savedop= opService.addOperateur(o);
-        Operateur o1 = new Operateur(123l,"op","zeineb","zeineb");
-        Operateur savedop1= opService.addOperateur(o);
-
-        Operateur actualop = opService.retrieveOperateur(1l);
-
-        assertEquals(1l, actualop.getIdOperateur());
-
-    }
-
-    @Test
-    public void addOperateurTest() {
+    public void addOP() {
         when(or.save(oo1)).thenReturn(oo1);
-        assertNotNull("rayen null",oo1);
-       // assertEquals(oo1, os.addOperateur(oo1),"zinouba");
+        assertNotNull(oo1 , "" );
+        assertEquals(oo1, cps.addOperateur(oo1),"");
         System.out.println("add works !");
     }
-}
+    @Test
+    public void delete() {
+        or.save(oo1);
+        cps.deleteOperateur(oo1.getIdOperateur());
+
+        verify(or, times(1)).deleteById(oo1.getIdOperateur());
+        System.out.println("Delete works !");
+    }
+
+
+
