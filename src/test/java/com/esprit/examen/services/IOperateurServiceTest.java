@@ -30,7 +30,6 @@ import javax.persistence.OneToMany;
 
 
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @RunWith(MockitoJUnitRunner.class)
 public class IOperateurServiceTest {
     @Mock
@@ -38,9 +37,7 @@ public class IOperateurServiceTest {
 
     private Operateur oo1 = new Operateur(11L,"fatma","daâs","546125");
     private Operateur oo2 = new Operateur(22L,"Fatma","daâs","546125");
-    @Autowired
-    IOperateurService opService;
-    IOperateurService os;
+    
     List<Operateur> listop = new ArrayList<Operateur>() {
         {
 
