@@ -14,14 +14,13 @@
 	<name>tpAchatProject</name>
 	<description>tpAchatProject</description>
 	<properties>
-
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 	<distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
-			<url>http://192.168.33.10/:8081/repository/maven-snapshots/</url>
+			<url>http://192.168.0.16:8081/repository/maven-snapshots/</url>
 		</repository>
 	</distributionManagement>
 	<dependencies>
@@ -39,9 +38,6 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
-
-
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -129,9 +125,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version>
+				
+				
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
