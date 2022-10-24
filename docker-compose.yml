@@ -14,9 +14,9 @@ services:
      - /home/mysql/data:/var/lib/mysql --user 1000
 
   spring_app:
-   image: zeineb12345/achatapp_t 
+   image: zeineb12345/achatapp 
    restart: unless-stopped
-   container_name: achatapp_t
+   container_name: achatapp
    ports:
     - 8082:8082
    depends_on:
