@@ -16,7 +16,7 @@ services:
   spring_app:
    image: ibrahimmotemri/achatapp_test
    container_name: achat2345
-   restart: no
+   
    ports:
     - 8082:8082
    depends_on:
