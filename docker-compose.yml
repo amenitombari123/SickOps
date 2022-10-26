@@ -38,6 +38,6 @@ services:
   angular-app: 
    image: "magnum3016/anglarachat:latest"
    links: 
-     - springboot-app
+     -  spring_app
    ports: 
      - "4200:4200"
