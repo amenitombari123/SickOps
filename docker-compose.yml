@@ -35,3 +35,9 @@ services:
    restart: on-failure
    links:
       - mysqldb1
+  angular-app: 
+   image: "magnum3016/anglarachat:latest"
+   links: 
+     - springboot-app
+   ports: 
+     - "4200:4200"
