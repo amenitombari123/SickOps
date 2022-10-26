@@ -36,7 +36,7 @@ services:
    links:
       - mysqldb1
   angular-app: 
-   image: "magnum3016/anglarachat:latest"
+   image: "zeineb12345/angular:latest"
    links: 
      -  spring_app
    ports: 
